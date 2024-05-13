@@ -9,7 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Instructor-service" />
         <module name="Courses-service" />
-        <module name="Student-Service" />
+        <module name="Notification-service" />
+        <module name="Student-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,7 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Courses-service" options="-parameters" />
       <module name="Instructor-service" options="-parameters" />
-      <module name="Student-Service" options="-parameters" />
+      <module name="Student-service" options="-parameters" />
     </option>
   </component>
 </project>
