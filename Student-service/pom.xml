@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>online-learning-platform</groupId>
-	<artifactId>Student-Service</artifactId>
+	<artifactId>Student-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Student-Service</name>
+	<name>Student-service</name>
 	<description>Student service for Online learning platform application</description>
 	<properties>
 		<java.version>17</java.version>
