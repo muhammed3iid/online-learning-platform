@@ -38,8 +38,13 @@ public class InstructorController {
     }
 
     @PutMapping("/announce-permission")
-    public boolean announcePermission(@RequestParam int courseID, @RequestParam int studentID){
+    public boolean announcePermission(@RequestParam int courseID, @RequestParam int studentID) {
         return instructorService.announcePermission(courseID, studentID);
+    }
+
+    @GetMapping("/accept-permission")
+    public boolean acceptPermission(@RequestParam int courseID, @RequestParam int studentID) {
+        return instructorService.acceptPermission(courseID, studentID);
     }
 
 }

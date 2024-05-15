@@ -81,10 +81,18 @@ public class CourseService {
                 .build();
     }
 
-    public boolean enroll(int courseID){
+    public CourseResponse enroll(int courseID){
         CourseModel course = courseRepository.findById(courseID);
         course.setNumOfEnrolled(course.getNumOfEnrolled()+1);
-        return true;
+        return CourseResponse.builder()
+                .id(course.getId())
+                .name(course.getName())
+                .duration(course.getDuration())
+                .category(course.getCategory())
+                .rating(course.getRating())
+                .capacity(course.getCapacity())
+                .numOfEnrolled(course.getNumOfEnrolled())
+                .build();
     }
 
     public boolean cancel(int courseID){

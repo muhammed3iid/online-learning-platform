@@ -15,4 +15,5 @@ public class StudentResponse {
     String affiliation;
     String bio;
     List<Integer> listOfCoursesID;
+    List<String> notifications;
 }

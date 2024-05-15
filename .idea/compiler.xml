@@ -9,10 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Instructor-service" />
         <module name="Courses-service" />
-        <module name="Notification-service" />
         <module name="Student-service" />
+        <module name="Admin-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Admin" target="11" />
+      <module name="Notification-service" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

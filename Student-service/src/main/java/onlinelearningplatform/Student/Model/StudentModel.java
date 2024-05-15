@@ -31,4 +31,9 @@ public class StudentModel {
     @ElementCollection
     @Column(name = "course_id")
     List<Integer> listOfCoursesID;
+
+    @ElementCollection
+    @Column(name="notification")
+    List<String> notifications;
+
 }

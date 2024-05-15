@@ -36,14 +36,19 @@ public class StudentController {
         return studentService.viewCourses(studentID);
     }
 
-    @PutMapping("/enroll")
-    public StudentResponse studentEnroll(@RequestParam int studentID, @RequestParam int courseID) {
-        return studentService.studentEnroll(studentID, courseID);
+    @PutMapping("/request")
+    public StudentResponse studentRequest(@RequestParam int studentID, @RequestParam int courseID) {
+        return studentService.studentRequest(studentID, courseID);
     }
 
     @PutMapping("/cancel")
     public StudentResponse studentCancel(@RequestParam int studentID, @RequestParam int courseID) {
         return studentService.studentCancel(studentID, courseID);
+    }
+
+    @PutMapping("/enroll")
+    public Boolean studentEnroll(@RequestParam int studentID, @RequestParam int courseID, @RequestParam String mssg) {
+        return studentService.studentEnroll(studentID, courseID, mssg);
     }
 
 }

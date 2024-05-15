@@ -9,6 +9,7 @@ import onlinelearningplatform.Instructor.Repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -23,10 +24,12 @@ import java.util.Objects;
 @Transactional
 public class InstructorService {
     private final InstructorRepository instructorRepository;
+    private final JmsTemplate jmsTemplate;
 
     @Autowired
-    public InstructorService(InstructorRepository instructorRepository) {
+    public InstructorService(InstructorRepository instructorRepository, JmsTemplate jmsTemplate) {
         this.instructorRepository = instructorRepository;
+        this.jmsTemplate = jmsTemplate;
     }
 
     public InstructorResponse instructorSignUp(InstructorRequest instructorRequest) {
@@ -105,6 +108,69 @@ public class InstructorService {
     public boolean announcePermission(int courseID, int studentID) {
         InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
         instructor.getWaitingList().put(courseID, studentID);
+        return true;
+    }
+
+    public boolean acceptPermission(int courseID, int studentID) {
+        InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/api/course/enroll";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("courseID", courseID);
+        ResponseEntity<CourseResponse> responseEntity = restTemplate.exchange(
+                builder.toUriString(), HttpMethod.PUT, null,
+                new ParameterizedTypeReference<>() {
+                });
+        CourseResponse courseResponse = responseEntity.getBody();
+
+
+        String message = "Instructor " + instructor.getName() + " has accepted you in "
+                + Objects.requireNonNull(courseResponse).getName() + " course.";
+
+        restTemplate = new RestTemplate();
+        url = "http://localhost:8082/api/student/enroll";
+        builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("courseID", courseID)
+                .queryParam("studentID", studentID)
+                .queryParam("message", message);
+        restTemplate.exchange(
+                builder.toUriString(), HttpMethod.PUT, null,
+                new ParameterizedTypeReference<>() {
+                });
+
+        instructor.getWaitingList().remove(courseID, studentID);
+        return true;
+    }
+
+    public boolean rejectPermission(int courseID, int studentID) {
+        InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/api/course/reject";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("courseID", courseID);
+        ResponseEntity<CourseResponse> responseEntity = restTemplate.exchange(
+                builder.toUriString(), HttpMethod.PUT, null,
+                new ParameterizedTypeReference<>() {
+                });
+        CourseResponse courseResponse = responseEntity.getBody();
+
+        restTemplate = new RestTemplate();
+        url = "http://localhost:8082/api/student/reject";
+        builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("courseID", courseID)
+                .queryParam("studentID", studentID);
+        restTemplate.exchange(
+                builder.toUriString(), HttpMethod.PUT, null,
+                new ParameterizedTypeReference<>() {
+                });
+
+        instructor.getWaitingList().remove(courseID, studentID);
+
+        String message = "Instructor " + instructor.getName() + " has rejected you in "
+                + Objects.requireNonNull(courseResponse).getName() + " course.";
+
+        jmsTemplate.convertAndSend("jms/olp/NotificationQueue", message);
         return true;
     }
 

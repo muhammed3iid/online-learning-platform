@@ -31,9 +31,8 @@ public class CourseController {
         return courseService.view(courseID);
     }
 
-
-    @GetMapping("/enroll")
-    public boolean enroll(@RequestParam int courseID) {
+    @PutMapping("/enroll")
+    public CourseResponse enroll(@RequestParam int courseID) {
         return courseService.enroll(courseID);
     }
 

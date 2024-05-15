@@ -38,6 +38,7 @@ public class StudentService {
                 .affiliation(studentRequest.getAffiliation())
                 .bio(studentRequest.getBio())
                 .listOfCoursesID(new ArrayList<>())
+                .notifications(new ArrayList<>())
                 .build()
         );
         return StudentResponse.builder()
@@ -48,6 +49,7 @@ public class StudentService {
                 .affiliation(student.getAffiliation())
                 .bio(student.getBio())
                 .listOfCoursesID(student.getListOfCoursesID())
+                .notifications(student.getNotifications())
                 .build();
     }
 
@@ -67,6 +69,7 @@ public class StudentService {
                 .affiliation(student.getAffiliation())
                 .bio(student.getBio())
                 .listOfCoursesID(student.getListOfCoursesID())
+                .notifications(student.getNotifications())
                 .build();
     }
 
@@ -99,7 +102,7 @@ public class StudentService {
         return courseResponseList;
     }
 
-    public StudentResponse studentEnroll(int studentID, int courseID) {
+    public StudentResponse studentRequest(int studentID, int courseID) {
         StudentModel student = studentRepository.findById(studentID);
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8081/api/instructor/announce-permission";
@@ -118,6 +121,7 @@ public class StudentService {
                 .affiliation(student.getAffiliation())
                 .bio(student.getBio())
                 .listOfCoursesID(student.getListOfCoursesID())
+                .notifications(student.getNotifications())
                 .build();
     }
 
@@ -142,7 +146,15 @@ public class StudentService {
                 .affiliation(student.getAffiliation())
                 .bio(student.getBio())
                 .listOfCoursesID(student.getListOfCoursesID())
+                .notifications(student.getNotifications())
                 .build();
+    }
+
+    public Boolean studentEnroll(int studentID, int courseID, String message) {
+        StudentModel student = studentRepository.findById(studentID);
+        student.getListOfCoursesID().add(courseID);
+        student.getNotifications().add(message);
+        return true;
     }
 
 }
