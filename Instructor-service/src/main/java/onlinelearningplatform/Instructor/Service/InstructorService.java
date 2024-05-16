@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -127,13 +129,14 @@ public class InstructorService {
 
         String message = "Instructor " + instructor.getName() + " has accepted you in "
                 + Objects.requireNonNull(courseResponse).getName() + " course.";
+        String encodedMessage = URLEncoder.encode(message, StandardCharsets.UTF_8);
 
         restTemplate = new RestTemplate();
         url = "http://localhost:8082/api/student/enroll";
         builder = UriComponentsBuilder.fromHttpUrl(url)
                 .queryParam("courseID", courseID)
                 .queryParam("studentID", studentID)
-                .queryParam("message", message);
+                .queryParam("message", encodedMessage);
         restTemplate.exchange(
                 builder.toUriString(), HttpMethod.PUT, null,
                 new ParameterizedTypeReference<>() {
@@ -143,35 +146,35 @@ public class InstructorService {
         return true;
     }
 
-    public boolean rejectPermission(int courseID, int studentID) {
-        InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/course/reject";
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("courseID", courseID);
-        ResponseEntity<CourseResponse> responseEntity = restTemplate.exchange(
-                builder.toUriString(), HttpMethod.PUT, null,
-                new ParameterizedTypeReference<>() {
-                });
-        CourseResponse courseResponse = responseEntity.getBody();
-
-        restTemplate = new RestTemplate();
-        url = "http://localhost:8082/api/student/reject";
-        builder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("courseID", courseID)
-                .queryParam("studentID", studentID);
-        restTemplate.exchange(
-                builder.toUriString(), HttpMethod.PUT, null,
-                new ParameterizedTypeReference<>() {
-                });
-
-        instructor.getWaitingList().remove(courseID, studentID);
-
-        String message = "Instructor " + instructor.getName() + " has rejected you in "
-                + Objects.requireNonNull(courseResponse).getName() + " course.";
-
-        jmsTemplate.convertAndSend("jms/olp/NotificationQueue", message);
-        return true;
-    }
+//    public boolean rejectPermission(int courseID, int studentID) {
+//        InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
+//        RestTemplate restTemplate = new RestTemplate();
+//        String url = "http://localhost:8080/api/course/reject";
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+//                .queryParam("courseID", courseID);
+//        ResponseEntity<CourseResponse> responseEntity = restTemplate.exchange(
+//                builder.toUriString(), HttpMethod.PUT, null,
+//                new ParameterizedTypeReference<>() {
+//                });
+//        CourseResponse courseResponse = responseEntity.getBody();
+//
+//        restTemplate = new RestTemplate();
+//        url = "http://localhost:8082/api/student/reject";
+//        builder = UriComponentsBuilder.fromHttpUrl(url)
+//                .queryParam("courseID", courseID)
+//                .queryParam("studentID", studentID);
+//        restTemplate.exchange(
+//                builder.toUriString(), HttpMethod.PUT, null,
+//                new ParameterizedTypeReference<>() {
+//                });
+//
+//        instructor.getWaitingList().remove(courseID, studentID);
+//
+//        String message = "Instructor " + instructor.getName() + " has rejected you in "
+//                + Objects.requireNonNull(courseResponse).getName() + " course.";
+//
+//        jmsTemplate.convertAndSend("jms/olp/NotificationQueue", message);
+//        return true;
+//    }
 
 }

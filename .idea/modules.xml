@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Courses-service/Courses-service.iml" filepath="$PROJECT_DIR$/Courses-service/Courses-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Instructor-service/Instructor-service.iml" filepath="$PROJECT_DIR$/Instructor-service/Instructor-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Student-service/Student-service.iml" filepath="$PROJECT_DIR$/Student-service/Student-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/online-learning-platform.iml" filepath="$PROJECT_DIR$/.idea/online-learning-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui_student.iml" filepath="$PROJECT_DIR$/ui_student.iml" />
     </modules>
   </component>
 </project>

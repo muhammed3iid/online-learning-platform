@@ -47,8 +47,8 @@ public class StudentController {
     }
 
     @PutMapping("/enroll")
-    public Boolean studentEnroll(@RequestParam int studentID, @RequestParam int courseID, @RequestParam String mssg) {
-        return studentService.studentEnroll(studentID, courseID, mssg);
+    public Boolean studentEnroll(@RequestParam int studentID, @RequestParam int courseID, @RequestParam String message) {
+        return studentService.studentEnroll(studentID, courseID, message);
     }
 
 }
