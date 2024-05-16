@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:student/student_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -26,15 +27,31 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Future<void> _signIn() async {
+    final Map<String, String> data = {
+      'email': _emailController.text,
+      'password': _passwordController.text,
+    };
+
     final response = await http.post(
-      Uri.parse('http://localhost:8082/api/student/signin'),
-      body: {
-        'email': _emailController.text,
-        'password': _passwordController.text,
+      Uri.parse('http://localhost:8082/api/student/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
       },
+      body: jsonEncode(data),
     );
 
     print('Sign In Response: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => StudentPage(userData: responseData)),
+      );
+    } else {
+      // Handle error response
+      print('Sign In Failed: ${response.statusCode} - ${response.body}');
+    }
   }
 
   Future<void> _signUp() async {
@@ -55,6 +72,17 @@ class _AuthPageState extends State<AuthPage> {
     );
 
     print('Sign Up Response: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => StudentPage(userData: responseData)),
+      );
+    } else {
+      // Handle error response
+      print('Sign Up Failed: ${response.statusCode} - ${response.body}');
+    }
   }
 
   @override
@@ -67,7 +95,7 @@ class _AuthPageState extends State<AuthPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Center(child: Text('Student authentication', style: TextStyle(fontSize: 42),)),
+              const Center(child: Text('Student Authentication Page', style: TextStyle(fontSize: 42),)),
               const SizedBox(height: 15),
               if (!_isSignIn) ...[
                 TextField(

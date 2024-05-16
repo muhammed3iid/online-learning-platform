@@ -21,7 +21,7 @@ public class StudentController {
         return studentService.studentSignUp(studentRequest);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public StudentResponse studentLogIn(@RequestBody StudentRequest studentRequest) {
         return studentService.studentLogIn(studentRequest);
     }
