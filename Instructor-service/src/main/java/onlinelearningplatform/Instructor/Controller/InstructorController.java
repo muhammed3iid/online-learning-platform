@@ -54,5 +54,10 @@ public class InstructorController {
         return instructorService.getWaitingList(instructorID);
     }
 
+    @GetMapping("/get-instructors")
+    public List<InstructorResponse> getInstructors() {
+        return instructorService.getInstructors();
+    }
+
 
 }

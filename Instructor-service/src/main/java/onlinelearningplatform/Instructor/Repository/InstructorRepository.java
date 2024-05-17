@@ -3,6 +3,8 @@ package onlinelearningplatform.Instructor.Repository;
 import onlinelearningplatform.Instructor.Model.InstructorModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface InstructorRepository extends JpaRepository<InstructorModel, Integer> {
     boolean existsByEmail(String email);
@@ -12,4 +14,5 @@ public interface InstructorRepository extends JpaRepository<InstructorModel, Int
     InstructorModel findById(int Id);
 
     InstructorModel findByListOfCoursesIDContains(int Id);
+
 }

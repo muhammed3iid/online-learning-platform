@@ -101,4 +101,12 @@ public class CourseService {
         return true;
     }
 
+    public boolean edit(int courseId, CourseRequest courseRequest) {
+        CourseModel course = courseRepository.findById(courseId);
+        course.setName(courseRequest.getName());
+        course.setCategory(courseRequest.getCategory());
+        course.setDuration(courseRequest.getDuration());
+        course.setCapacity(course.getCapacity());
+        return true;
+    }
 }

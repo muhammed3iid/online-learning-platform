@@ -180,4 +180,22 @@ public class StudentService {
         return true;
     }
 
+    public List<StudentResponse> getStudents() {
+        List<StudentResponse> studentResponseList = new ArrayList<>();
+        List<StudentModel> students = studentRepository.findAll();
+        for(StudentModel student: students){
+            studentResponseList.add(
+                    StudentResponse.builder()
+                            .id(student.getId())
+                            .name(student.getName())
+                            .email(student.getEmail())
+                            .password(student.getPassword())
+                            .bio(student.getBio())
+                            .affiliation(student.getAffiliation())
+                            .build()
+            );
+        }
+        return studentResponseList;
+    }
+
 }

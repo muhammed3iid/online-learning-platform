@@ -204,4 +204,23 @@ public class InstructorService {
         return waitingListResponses;
     }
 
+    public List<InstructorResponse> getInstructors() {
+        List<InstructorResponse> instructorResponseList = new ArrayList<>();
+        List<InstructorModel> instructors = instructorRepository.findAll();
+        for(InstructorModel instructor: instructors){
+            instructorResponseList.add(
+                    InstructorResponse.builder()
+                            .id(instructor.getId())
+                            .name(instructor.getName())
+                            .email(instructor.getEmail())
+                            .password(instructor.getPassword())
+                            .bio(instructor.getBio())
+                            .affiliation(instructor.getAffiliation())
+                            .yearsOfExperience(instructor.getYearsOfExperience())
+                            .build()
+            );
+        }
+        return instructorResponseList;
+    }
+
 }

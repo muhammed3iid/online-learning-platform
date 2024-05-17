@@ -31,6 +31,11 @@ public class StudentController {
         return studentService.getStudentById(studentId);
     }
 
+    @GetMapping("/get-students")
+    public List<StudentResponse> getStudents() {
+        return studentService.getStudents();
+    }
+
     @GetMapping("/search-courses")
     public List<CourseResponse> searchCourses(@RequestParam String key) {
         return studentService.searchCourses(key);

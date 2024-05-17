@@ -41,5 +41,11 @@ public class CourseController {
         return courseService.cancel(courseID);
     }
 
+    @PutMapping("/edit")
+    public boolean edit(@RequestParam int courseId, @RequestBody CourseRequest courseRequest) {
+        return courseService.edit(courseId, courseRequest);
+    }
+
+
 
 }

@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Admin-service:war" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c668ad36-59c7-4aec-8e67-d52070be77b1" name="Changes" comment="student ui updated">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/DTO/StudentResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/DTO/WaitingListResponse.java" afterDir="false" />
+    <list default="true" id="c668ad36-59c7-4aec-8e67-d52070be77b1" name="Changes" comment="instructor ui update">
+      <change afterPath="$PROJECT_DIR$/Admin-service/src/main/java/onlinelearningplatform/adminservice/Controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin-service/src/main/java/onlinelearningplatform/adminservice/DTO/CourseRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin-service/src/main/java/onlinelearningplatform/adminservice/DTO/CourseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin-service/src/main/java/onlinelearningplatform/adminservice/DTO/InstructorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin-service/src/main/java/onlinelearningplatform/adminservice/DTO/StudentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin-service/src/main/java/onlinelearningplatform/adminservice/Service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Admin-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin-service/src/main/resources/META-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Admin-service/src/main/resources/META-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Courses-service/src/main/java/onlinelearningplatform/Courses/Controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Courses-service/src/main/java/onlinelearningplatform/Courses/Controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Courses-service/src/main/java/onlinelearningplatform/Courses/Repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Courses-service/src/main/java/onlinelearningplatform/Courses/Repository/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Courses-service/src/main/java/onlinelearningplatform/Courses/Service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Courses-service/src/main/java/onlinelearningplatform/Courses/Service/CourseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Controller/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Controller/InstructorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Repository/InstructorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Repository/InstructorRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Service/InstructorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Service/InstructorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Controller/StudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI-instructor/lib/instructor_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/UI-instructor/lib/instructor_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +57,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -70,6 +91,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="onlinelearningplatform.adminservice.DTO" />
       <recent name="onlinelearningplatform.Instructor.DTO" />
     </key>
   </component>
@@ -80,7 +102,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="GlassFish Server.GlassFish 7.0.14">
+  <component name="RunManager" selected="Spring Boot.CoursesServiceApplication">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
@@ -101,7 +123,11 @@
     </configuration>
     <configuration name="GlassFish 7.0.14" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 7.0.14" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="17" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
+      <deployment>
+        <artifact name="Admin-service:war">
+          <settings />
+        </artifact>
+      </deployment>
       <server-settings>
         <option name="DOMAIN" value="domain1" />
         <option name="PRESERVE" value="false" />
@@ -161,6 +187,9 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Admin-service:war" />
+        </option>
       </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
@@ -223,6 +252,8 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.CoursesServiceApplication" />
+        <item itemvalue="Spring Boot.StudentServiceApplication" />
         <item itemvalue="Spring Boot.InstructorServiceApplication" />
       </list>
     </recent_temporary>
@@ -261,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715905496126</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="instructor ui update">
+      <created>1715911820523</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715911820523</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +320,7 @@
     <MESSAGE value="refactor" />
     <MESSAGE value="student ui updated" />
     <MESSAGE value="instructor ui initialized" />
-    <option name="LAST_COMMIT_MESSAGE" value="instructor ui initialized" />
+    <MESSAGE value="instructor ui update" />
+    <option name="LAST_COMMIT_MESSAGE" value="instructor ui update" />
   </component>
 </project>
