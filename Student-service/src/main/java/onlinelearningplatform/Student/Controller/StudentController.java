@@ -26,6 +26,11 @@ public class StudentController {
         return studentService.studentLogIn(studentRequest);
     }
 
+    @GetMapping("/get-student")
+    public StudentResponse getStudentById(@RequestParam int studentId) {
+        return studentService.getStudentById(studentId);
+    }
+
     @GetMapping("/search-courses")
     public List<CourseResponse> searchCourses(@RequestParam String key) {
         return studentService.searchCourses(key);
@@ -49,6 +54,11 @@ public class StudentController {
     @PutMapping("/enroll")
     public Boolean studentEnroll(@RequestParam int studentID, @RequestParam int courseID, @RequestParam String message) {
         return studentService.studentEnroll(studentID, courseID, message);
+    }
+
+    @PutMapping("/notify-reject")
+    public Boolean studentNotifyReject(@RequestParam int studentId, @RequestParam String message) {
+        return studentService.studentNotifyReject(studentId, message);
     }
 
 }

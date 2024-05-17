@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c668ad36-59c7-4aec-8e67-d52070be77b1" name="Changes" comment="student ui updated">
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/DTO/StudentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/DTO/WaitingListResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Controller/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Controller/InstructorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Service/InstructorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Service/InstructorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI-instructor/lib/instructor_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/UI-instructor/lib/instructor_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +59,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="io.flutter.reload.alreadyRun" value="true" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="onlinelearningplatform.Instructor.DTO" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -67,7 +80,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Flutter.instructor">
+  <component name="RunManager" selected="GlassFish Server.GlassFish 7.0.14">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
@@ -85,6 +98,70 @@
       <option name="additionalArgs" value="--web-port=8084" />
       <option name="filePath" value="$PROJECT_DIR$/UI-student/lib/main.dart" />
       <method v="2" />
+    </configuration>
+    <configuration name="GlassFish 7.0.14" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 7.0.14" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="17" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment />
+      <server-settings>
+        <option name="DOMAIN" value="domain1" />
+        <option name="PRESERVE" value="false" />
+        <option name="COMPATIBILITY" value="false" />
+        <option name="VIRTUAL_SERVER" />
+        <option name="USERNAME" value="admin" />
+        <option name="CREDENTIAL_ALIAS" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="GlassFish" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9009" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="UI-instructor" />
@@ -139,9 +216,16 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Flutter.student" />
-      <item itemvalue="Flutter.instructor" />
+      <item itemvalue="GlassFish Server.GlassFish 7.0.14" />
+      <item itemvalue="Spring Boot.CoursesServiceApplication" />
+      <item itemvalue="Spring Boot.InstructorServiceApplication" />
+      <item itemvalue="Spring Boot.StudentServiceApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.InstructorServiceApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -170,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715899818977</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="instructor ui initialized">
+      <created>1715905496126</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715905496126</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +281,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor" />
     <MESSAGE value="student ui updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="student ui updated" />
+    <MESSAGE value="instructor ui initialized" />
+    <option name="LAST_COMMIT_MESSAGE" value="instructor ui initialized" />
   </component>
 </project>

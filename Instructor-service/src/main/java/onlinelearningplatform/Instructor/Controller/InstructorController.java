@@ -1,10 +1,7 @@
 package onlinelearningplatform.Instructor.Controller;
 
 import lombok.RequiredArgsConstructor;
-import onlinelearningplatform.Instructor.DTO.CourseRequest;
-import onlinelearningplatform.Instructor.DTO.CourseResponse;
-import onlinelearningplatform.Instructor.DTO.InstructorRequest;
-import onlinelearningplatform.Instructor.DTO.InstructorResponse;
+import onlinelearningplatform.Instructor.DTO.*;
 import onlinelearningplatform.Instructor.Service.InstructorService;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +43,16 @@ public class InstructorController {
     public boolean acceptPermission(@RequestParam int courseID, @RequestParam int studentID) {
         return instructorService.acceptPermission(courseID, studentID);
     }
+
+    @GetMapping("/reject-permission")
+    public boolean rejectPermission(@RequestParam int courseID, @RequestParam int studentID) {
+        return instructorService.rejectPermission(courseID, studentID);
+    }
+
+    @GetMapping("/get-waiting-list")
+    public List<WaitingListResponse> getWaitingList(@RequestParam int instructorID) {
+        return instructorService.getWaitingList(instructorID);
+    }
+
 
 }

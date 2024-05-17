@@ -1,15 +1,11 @@
 package onlinelearningplatform.Instructor.Service;
 
-import onlinelearningplatform.Instructor.DTO.CourseRequest;
-import onlinelearningplatform.Instructor.DTO.CourseResponse;
-import onlinelearningplatform.Instructor.DTO.InstructorRequest;
-import onlinelearningplatform.Instructor.DTO.InstructorResponse;
+import onlinelearningplatform.Instructor.DTO.*;
 import onlinelearningplatform.Instructor.Model.InstructorModel;
 import onlinelearningplatform.Instructor.Repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -17,21 +13,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @Transactional
 public class InstructorService {
     private final InstructorRepository instructorRepository;
-    private final JmsTemplate jmsTemplate;
 
     @Autowired
-    public InstructorService(InstructorRepository instructorRepository, JmsTemplate jmsTemplate) {
+    public InstructorService(InstructorRepository instructorRepository) {
         this.instructorRepository = instructorRepository;
-        this.jmsTemplate = jmsTemplate;
     }
 
     public InstructorResponse instructorSignUp(InstructorRequest instructorRequest) {
@@ -146,35 +137,71 @@ public class InstructorService {
         return true;
     }
 
-//    public boolean rejectPermission(int courseID, int studentID) {
-//        InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://localhost:8080/api/course/reject";
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-//                .queryParam("courseID", courseID);
-//        ResponseEntity<CourseResponse> responseEntity = restTemplate.exchange(
-//                builder.toUriString(), HttpMethod.PUT, null,
-//                new ParameterizedTypeReference<>() {
-//                });
-//        CourseResponse courseResponse = responseEntity.getBody();
-//
-//        restTemplate = new RestTemplate();
-//        url = "http://localhost:8082/api/student/reject";
-//        builder = UriComponentsBuilder.fromHttpUrl(url)
-//                .queryParam("courseID", courseID)
-//                .queryParam("studentID", studentID);
-//        restTemplate.exchange(
-//                builder.toUriString(), HttpMethod.PUT, null,
-//                new ParameterizedTypeReference<>() {
-//                });
-//
-//        instructor.getWaitingList().remove(courseID, studentID);
-//
-//        String message = "Instructor " + instructor.getName() + " has rejected you in "
-//                + Objects.requireNonNull(courseResponse).getName() + " course.";
-//
-//        jmsTemplate.convertAndSend("jms/olp/NotificationQueue", message);
-//        return true;
-//    }
+    public boolean rejectPermission(int courseID, int studentID) {
+        InstructorModel instructor = instructorRepository.findByListOfCoursesIDContains(courseID);
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/api/course/view";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("courseID", courseID);
+        ResponseEntity<CourseResponse> responseEntity = restTemplate.exchange(
+                builder.toUriString(), HttpMethod.GET, null,
+                new ParameterizedTypeReference<>() {
+                });
+        CourseResponse courseResponse = responseEntity.getBody();
+
+        String message = "Instructor " + instructor.getName() + " has rejected you in "
+                + Objects.requireNonNull(courseResponse).getName() + " course.";
+        String encodedMessage = URLEncoder.encode(message, StandardCharsets.UTF_8);
+
+        restTemplate = new RestTemplate();
+        url = "http://localhost:8082/api/student/notify-reject";
+        builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("studentID", studentID)
+                .queryParam("message", encodedMessage);
+        restTemplate.exchange(
+                builder.toUriString(), HttpMethod.PUT, null,
+                new ParameterizedTypeReference<>() {
+                });
+
+        instructor.getWaitingList().remove(courseID, studentID);
+        return true;
+    }
+
+    public List<WaitingListResponse> getWaitingList(int instructorId) {
+        List<WaitingListResponse> waitingListResponses = new ArrayList<>();
+        InstructorModel instructor = instructorRepository.findById(instructorId);
+        for (Map.Entry<Integer, Integer> entry : instructor.getWaitingList().entrySet()) {
+            int courseId = entry.getKey();
+            int studentId = entry.getValue();
+
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "http://localhost:8082/api/student/get-student";
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+                    .queryParam("studentId", studentId);
+            ResponseEntity<StudentResponse> studentResponseEntity = restTemplate.exchange(
+                    builder.toUriString(), HttpMethod.GET, null,
+                    new ParameterizedTypeReference<>() {
+                    });
+            String studentName = studentResponseEntity.getBody().getName();
+
+            restTemplate = new RestTemplate();
+            url = "http://localhost:8080/api/course/view";
+            builder = UriComponentsBuilder.fromHttpUrl(url)
+                    .queryParam("courseID", courseId);
+            ResponseEntity<CourseResponse> courseResponseEntity = restTemplate.exchange(
+                    builder.toUriString(), HttpMethod.GET, null,
+                    new ParameterizedTypeReference<>() {
+                    });
+            String courseName = courseResponseEntity.getBody().getName();
+
+            waitingListResponses.add(WaitingListResponse.builder()
+                    .studentName(studentName)
+                    .courseName(courseName)
+                    .courseId(courseId)
+                    .studentId(studentId)
+                    .build());
+        }
+        return waitingListResponses;
+    }
 
 }

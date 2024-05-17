@@ -73,6 +73,23 @@ public class StudentService {
                 .build();
     }
 
+    public StudentResponse getStudentById(int Id) {
+        StudentModel student = studentRepository.findById(Id);
+        if (student == null) {
+            throw new RuntimeException("User with email " + Id + " not found.");
+        }
+        return StudentResponse.builder()
+                .id(student.getId())
+                .name(student.getName())
+                .email(student.getEmail())
+                .password(student.getPassword())
+                .affiliation(student.getAffiliation())
+                .bio(student.getBio())
+                .listOfCoursesID(student.getListOfCoursesID())
+                .notifications(student.getNotifications())
+                .build();
+    }
+
     public List<CourseResponse> searchCourses(String key) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/api/course/search";
@@ -153,6 +170,12 @@ public class StudentService {
     public Boolean studentEnroll(int studentID, int courseID, String message) {
         StudentModel student = studentRepository.findById(studentID);
         student.getListOfCoursesID().add(courseID);
+        student.getNotifications().add(message);
+        return true;
+    }
+
+    public Boolean studentNotifyReject(int Id, String message) {
+        StudentModel student = studentRepository.findById(Id);
         student.getNotifications().add(message);
         return true;
     }

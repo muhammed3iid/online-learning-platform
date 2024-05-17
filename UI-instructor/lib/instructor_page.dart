@@ -84,11 +84,41 @@ class _InstructorPageState extends State<InstructorPage> {
   }
 
   Future<void> _fetchWaitingLists() async {
-    List<dynamic> waitingLists =
-        widget.userData['waitingList'] as List<dynamic>;
-    setState(() {
-      _waitingLists = waitingLists;
-    });
+    final int instructorID = widget.userData['id'];
+    try {
+      final response = await http.get(
+        Uri.parse(
+            'http://localhost:8081/api/instructor/get-waiting-list?instructorID=$instructorID'),
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _waitingLists = json.decode(response.body);
+        });
+      } else {
+        throw Exception('Failed to load waiting lists');
+      }
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
+
+  Future<void> _acceptStudent(int courseId, int studentId) async {
+    try {
+      final response = await http.get(
+        Uri.parse(
+            'http://localhost:8081/api/instructor/accept-permission?courseID=$courseId&studentID=$studentId'),
+      );
+
+      if (response.statusCode == 200) {
+        print('Student accepted successfully');
+        _fetchWaitingLists();
+      } else {
+        print('Failed to accept student: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error accepting student: $e');
+    }
   }
 
   void _selectCategory(bool showAllCourses) {
@@ -275,6 +305,7 @@ class _InstructorPageState extends State<InstructorPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   'Waiting Lists',
@@ -300,15 +331,13 @@ class _InstructorPageState extends State<InstructorPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      waitingList,
+                      '${waitingList['courseName']} - ${waitingList['studentName']}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            // Handle accept
-                          },
+                          onPressed: () => _acceptStudent(waitingList['courseId'], waitingList['studentId']),
                           child: const Text('Accept'),
                         ),
                         const SizedBox(width: 10),
