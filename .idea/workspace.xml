@@ -4,24 +4,36 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c668ad36-59c7-4aec-8e67-d52070be77b1" name="Changes" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI-student/lib/student_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" afterDir="false" />
+    <list default="true" id="c668ad36-59c7-4aec-8e67-d52070be77b1" name="Changes" comment="student ui updated">
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Student-service/src/main/java/onlinelearningplatform/Student/Controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI-student/lib/auth_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/UI-student/lib/auth_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_student.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui_student.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Controller/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Instructor-service/src/main/java/onlinelearningplatform/Instructor/Controller/InstructorController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dart File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -44,11 +56,10 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -56,7 +67,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CoursesServiceApplication">
+  <component name="RunManager" selected="Flutter.instructor">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
@@ -65,10 +76,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-      <option name="additionalArgs" value="--web-port=49430" />
+    <configuration name="instructor" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="additionalArgs" value="--web-port=8085" />
+      <option name="filePath" value="$PROJECT_DIR$/UI-instructor/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="student" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="additionalArgs" value="--web-port=8084" />
       <option name="filePath" value="$PROJECT_DIR$/UI-student/lib/main.dart" />
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="UI-instructor" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="UI-instructor" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="CoursesServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Courses-service" />
@@ -110,15 +139,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.CoursesServiceApplication" />
-      <item itemvalue="Spring Boot.InstructorServiceApplication" />
-      <item itemvalue="Spring Boot.StudentServiceApplication" />
+      <item itemvalue="Flutter.student" />
+      <item itemvalue="Flutter.instructor" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.InstructorServiceApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -131,7 +154,7 @@
       <workItem from="1715738862995" duration="139000" />
       <workItem from="1715820484308" duration="211000" />
       <workItem from="1715820721492" duration="1105000" />
-      <workItem from="1715893796571" duration="5254000" />
+      <workItem from="1715893796571" duration="7174000" />
     </task>
     <task id="LOCAL-00001" summary="refactor">
       <created>1715821822451</created>
@@ -140,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715821822451</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="student ui updated">
+      <created>1715899818977</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715899818977</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +189,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="student ui updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="student ui updated" />
   </component>
 </project>

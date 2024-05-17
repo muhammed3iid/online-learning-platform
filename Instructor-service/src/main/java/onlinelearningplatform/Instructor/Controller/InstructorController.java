@@ -22,7 +22,7 @@ public class InstructorController {
         return instructorService.instructorSignUp(instructorRequest);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public InstructorResponse instructorLogIn(@RequestBody InstructorRequest instructorRequest) {
         return instructorService.instructorLogIn(instructorRequest);
     }
